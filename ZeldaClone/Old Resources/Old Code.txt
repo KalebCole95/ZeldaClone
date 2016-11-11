@@ -1,0 +1,51 @@
+        
+        final double elapsedSeconds = (timestamp - lastUpdate) / 1_000_000_000.0;
+        final double deltaX = elapsedSeconds * horizVelocity;
+        final double deltaY = elapsedSeconds * vertVelocity;
+        final double oldX = paneHandler.hitBoxPane.getTranslateX();
+        final double oldY = paneHandler.hitBoxPane.getTranslateY();
+        final double oldHitBoxX = hitBox.getTranslateX();
+        final double oldHitBoxY = hitBox.getTranslateY();
+        final double oldSpriteX = spriteArray[0].getTranslateX();
+        final double oldSpriteY = spriteArray[0].getTranslateY();
+
+        hitBox.setTranslateX(oldHitBoxX + deltaX);
+        if (hitBox.getTranslateX() < -1) {
+            hitBox.setTranslateX(0);
+        } else if (hitBox.getTranslateX() > areaSet.get(currentArea).maxWidth - PIXEL_PER_TILE) {
+            hitBox.setTranslateX(areaSet.get(currentArea).maxWidth - PIXEL_PER_TILE);
+        } else {
+            if (!HitBox.collisionResolver(hitBox)) {
+                if ((paneHandler.hitBoxPane.getTranslateX() >= areaSet.get(currentArea).minWidth && hitBox.getTranslateX() <= (WINDOW_WIDTH - PIXEL_PER_TILE) / 2 + 1) || (paneHandler.hitBoxPane.getTranslateX() <= -areaSet.get(currentArea).maxHeight + WINDOW_WIDTH && hitBox.getTranslateX() >= areaSet.get(currentArea).maxWidth - (WINDOW_WIDTH + PIXEL_PER_TILE) / 2 - 1)) {
+                    moveAll("x", oldSpriteX + deltaX);
+                } else {
+                    paneHandler.hitBoxPane.setTranslateX(oldX - deltaX);
+                    areaSet.get(currentArea).backgroundPane.setTranslateX(oldX - deltaX);
+                    hitBox.setTranslateX(oldHitBoxX + deltaX);
+                    System.out.println(timestamp);
+                }
+            } else {
+                hitBox.setTranslateX(oldHitBoxX);
+            }
+        }
+        
+        hitBox.setTranslateY(oldHitBoxY + deltaY);
+        if (hitBox.getTranslateY() < -1) {
+            hitBox.setTranslateY(0);
+        } else if (hitBox.getTranslateY() > areaSet.get(currentArea).maxHeight - PIXEL_PER_TILE) {
+            hitBox.setTranslateY(areaSet.get(currentArea).maxHeight - PIXEL_PER_TILE);
+        } else {
+            if (!HitBox.collisionResolver(hitBox)) {
+                if ((paneHandler.hitBoxPane.getTranslateY() >= areaSet.get(currentArea).minHeight && hitBox.getTranslateY() <= (WINDOW_HEIGHT - PIXEL_PER_TILE) / 2 + 1) || (paneHandler.hitBoxPane.getTranslateY() <= -areaSet.get(currentArea).maxHeight + WINDOW_HEIGHT && hitBox.getTranslateY() >= areaSet.get(currentArea).maxHeight - (WINDOW_HEIGHT + PIXEL_PER_TILE) / 2 - 1)) {
+                    moveAll("y", oldSpriteY + deltaY);
+                } else {
+                    paneHandler.hitBoxPane.setTranslateY(oldY - deltaY);
+                    areaSet.get(currentArea).backgroundPane.setTranslateY(oldY - deltaY);
+                    hitBox.setTranslateY(oldHitBoxY + deltaY);
+                    System.out.println(timestamp);
+                }
+            } else {
+                hitBox.setTranslateY(oldHitBoxY);
+            }
+        }
+        

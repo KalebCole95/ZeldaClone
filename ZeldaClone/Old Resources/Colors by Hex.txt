@@ -1,0 +1,17 @@
+Black = 202020
+Light Gray = b0b0b0
+dark gray = 808080
+brown = 6E4B2D
+light brown = a06e46
+skin color = F5B98C
+skin highlight = E69150
+eye blue light = 28A0F0
+eye blue dark = 2068c8
+gold = FFCD23
+dark gold = C8960A
+green = b8e61e
+green dark = 8CB414
+flower = FFE575
+red = ff0000
+red light white = ffdddd
+red dark = aa0000
