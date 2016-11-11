@@ -1,0 +1,6 @@
+					=== Version 1.0.0 ===
+* comments on the overall version presented, in paragraph form. (above is tabbed 5 times, mmm that number) also let everyline wordwrap so just keep typing no need for periods at the end of the list but here put them.
+- list of upgrades or additions since last version
+	- comment on the part above
+		- and so on
+- Start of version controlling and trying to comment in code
